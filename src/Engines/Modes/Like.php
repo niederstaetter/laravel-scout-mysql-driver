@@ -20,7 +20,8 @@ class Like extends Mode
         $queryString .= '(';
 
         foreach ($this->fields as $field) {
-            $queryString .= "`$field` LIKE ? OR ";
+            $tablename = $builder->model->getTable();
+            $queryString .= "`$tablename`.`$field` LIKE ? OR ";
         }
 
         $queryString = trim($queryString, 'OR ');
